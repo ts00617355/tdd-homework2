@@ -1,0 +1,17 @@
+{
+  "name": "sandytseng/shipping-cart",
+  "require": {
+    "phpunit/phpunit": "^5.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "tinymao",
+      "email": "winson58kimo@gmail.com"
+    }
+  ]
+}
