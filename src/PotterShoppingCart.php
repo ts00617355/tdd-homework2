@@ -14,7 +14,7 @@ class PotterShoppingCart
      */
     public function addBooksToCart($books)
     {
-
+        $this->books = array_merge($this->books, $books);
     }
 
     /**
@@ -23,6 +23,11 @@ class PotterShoppingCart
      */
     public function calculate()
     {
+        $total = 0;
+        foreach ($this->books as $book) {
+            $total += $book->price;
+        }
 
+        $this->total = $total;
     }
 }
