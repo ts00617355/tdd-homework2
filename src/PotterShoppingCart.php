@@ -37,19 +37,21 @@ class PotterShoppingCart
         // 兩本不同的書
         switch (count($this->bookGroup)) {
             case 2:
-                $total = $total * 0.95;
+                $discount = 0.95;
                 break;
             case 3:
-                $total = $total * 0.9;
+                $discount = 0.9;
                 break;
             case 4:
-                $total = $total * 0.8;
+                $discount = 0.8;
                 break;
             case 5:
-                $total = $total * 0.75;
+                $discount = 0.75;
                 break;
+            default:
+                $discount = 1;
         }
 
-        $this->total = $total;
+        $this->total = $total * $discount;
     }
 }
