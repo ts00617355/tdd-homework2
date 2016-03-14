@@ -122,4 +122,29 @@ class PotterShoppingCartTest extends PHPUnit_Framework_TestCase
         $expected = 375;
         $this->assertEquals($expected, $result);
     }
+
+    /**
+     * Scenario: 一二集各買了一本，第三集買了兩本，價格應為100*3*0.9 + 100 = 370
+     */
+    public function test_buy_1_first_and_second_episode__2_thrid_episode_of_Harry_Potter()
+    {
+        // arrange
+        $books = [
+            new Book(1, "哈利波特第一集", 100),
+            new Book(2, "哈利波特第二集", 100),
+            new Book(3, "哈利波特第三集", 100),
+            new Book(3, "哈利波特第三集", 100),
+        ];
+
+        $cart = new PotterShoppingCart();
+        $cart->addBooksToCart($books);
+
+        //act
+        $cart->calculate();
+        $result = $cart->total;
+
+        //assert
+        $expected = 370;
+        $this->assertEquals($expected, $result);
+    }
 }
