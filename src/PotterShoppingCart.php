@@ -3,7 +3,7 @@
 namespace App;
 
 
-class PotterShoppingCart
+class PotterShoppingCart implements Cart
 {
     public $books = [];
     public $total = 0;
