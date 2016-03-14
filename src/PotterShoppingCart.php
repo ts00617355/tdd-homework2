@@ -35,8 +35,13 @@ class PotterShoppingCart
 
 
         // 兩本不同的書
-        if (2 == count($this->bookGroup)) {
-            $total = $total * 0.95;
+        switch (count($this->bookGroup)) {
+            case 2:
+                $total = $total * 0.95;
+                break;
+            case 3:
+                $total = $total * 0.9;
+                break;
         }
 
         $this->total = $total;
