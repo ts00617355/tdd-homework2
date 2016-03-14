@@ -26,32 +26,44 @@ class PotterShoppingCart
     {
         $total = 0;
         foreach ($this->books as $book) {
-            if (!in_array($book, $this->bookGroup)) {
-                $this->bookGroup[] = $book;
+            foreach ($this->bookGroup as &$group) {
+                if (!in_array($book, $group)) {
+                    $group[] = $book;
+                    continue 2;
+                }
             }
-
-            $total += $book->price;
+            $this->bookGroup[] = [$book];
         }
 
 
         // 兩本不同的書
-        switch (count($this->bookGroup)) {
-            case 2:
-                $discount = 0.95;
-                break;
-            case 3:
-                $discount = 0.9;
-                break;
-            case 4:
-                $discount = 0.8;
-                break;
-            case 5:
-                $discount = 0.75;
-                break;
-            default:
-                $discount = 1;
+        foreach ($this->bookGroup as $group) {
+            switch (count($group)) {
+                case 2:
+                    $discount = 0.95;
+                    break;
+                case 3:
+                    $discount = 0.9;
+                    break;
+                case 4:
+                    $discount = 0.8;
+                    break;
+                case 5:
+                    $discount = 0.75;
+                    break;
+                default:
+                    $discount = 1;
+            }
+
+            $groupTotal = 0;
+            foreach ($group as $books) {
+                $groupTotal += $book->price;
+            }
+
+            $total += $groupTotal * $discount;
         }
 
-        $this->total = $total * $discount;
+
+        $this->total = $total;
     }
 }
