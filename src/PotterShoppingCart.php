@@ -35,26 +35,9 @@ class PotterShoppingCart implements Cart
             $this->bookGroup[] = [$book];
         }
 
-
         // 兩本不同的書
         foreach ($this->bookGroup as $group) {
-            switch (count($group)) {
-                case 2:
-                    $discount = 0.95;
-                    break;
-                case 3:
-                    $discount = 0.9;
-                    break;
-                case 4:
-                    $discount = 0.8;
-                    break;
-                case 5:
-                    $discount = 0.75;
-                    break;
-                default:
-                    $discount = 1;
-            }
-
+            $discount = self::getDiscount($group);
             $groupTotal = 0;
             foreach ($group as $books) {
                 $groupTotal += $book->price;
@@ -65,5 +48,31 @@ class PotterShoppingCart implements Cart
 
 
         $this->total = $total;
+    }
+
+    /**
+     * 取得不同打折數
+     * @param $group
+     * @return float|int
+     */
+    static public function getDiscount($group) {
+        switch (count($group)) {
+            case 2:
+                $discount = 0.95;
+                break;
+            case 3:
+                $discount = 0.9;
+                break;
+            case 4:
+                $discount = 0.8;
+                break;
+            case 5:
+                $discount = 0.75;
+                break;
+            default:
+                $discount = 1;
+        }
+
+        return $discount;
     }
 }
