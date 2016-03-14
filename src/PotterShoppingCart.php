@@ -42,6 +42,9 @@ class PotterShoppingCart
             case 3:
                 $total = $total * 0.9;
                 break;
+            case 4:
+                $total = $total * 0.8;
+                break;
         }
 
         $this->total = $total;
